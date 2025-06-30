@@ -4,6 +4,7 @@ import {Routes, Route } from "react-router-dom";
 import AddUni from "./pages/AddUni/AddUni";
 import ListUni from "./pages/ListUni/ListUni";
 import { useState } from "react";
+import {ToastContainer} from 'react-toastify';
 
 
 const App = () => {
@@ -13,13 +14,12 @@ const toggleSidebar=()=>{
   setSidebarVisible(!sidebarVisible);
 }
 
-
-
   return (
     <div className="d-flex" id="wrapper">
       <Sidebar sidebarVisible={sidebarVisible} />
       <div id="page-content-wrapper">
         <Menubar toggleSidebar={toggleSidebar} />
+        <ToastContainer />
 
         <div className="container-fluid">
           <Routes>

@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import {useState } from "react";
+import { addUniversity } from "../../services/uniselService";
+import { toast } from "react-toastify";
 
 const AddUni = () => {
   const [data, setData] = useState({
     name: "",
     address: "",
-    tuitionFee: "", // fixed typo
+    tuitionFee: "",
     ranking: "",
     deadline: "",
     costOfAttendance: "",
-    scholarshipAvailable: "", // should be boolean ideally
+    scholarshipAvailable: "",
     minGPA: "",
     minIelts: "",
     weather: "",
@@ -31,14 +32,9 @@ const AddUni = () => {
   e.preventDefault();
 
   try {
-    const response = await axios
-    .post('http://localhost:8848/unisel/university', data); // send data directly
-
-    console.log(response.data);
-
-    if (response.status === 200) {
-      alert('University added successfully');
-      setData({
+    await addUniversity(data);
+    toast.success("Added Successfully!");
+     setData({
         name: '',
         address: '',
         tuitionFee: '',
@@ -50,14 +46,12 @@ const AddUni = () => {
         minIelts: '',
         weather: '',
         acceptanceRate: ''
-      });
-    }
+      }
+    );
   } catch (error) {
-     console.error('Error response:', error.response); // shows backend error
-  console.error('Error message:', error.message);
-    // console.error(error);
-    alert('Failed while adding university');
+    toast.error("Error occured!")
   }
+  
 };
 
 
@@ -212,6 +206,7 @@ const AddUni = () => {
                     value={data.weather}
                   />
                 </div>
+
                 <div className="mb-3">
                   <label htmlFor="acceptanceRate" className="form-label">
                     Acceptance Rate (%)
@@ -226,6 +221,7 @@ const AddUni = () => {
                     onChange={onChangeHandler}
                     value={data.acceptanceRate}
                   />
+                  
                 </div>
                 <button type="submit" className="btn btn-success">
                   Submit

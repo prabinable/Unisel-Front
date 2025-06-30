@@ -5,8 +5,8 @@ const Sidebar = ({sidebarVisible}) => {
   return (
     <div className={`border-end bg-white ${sidebarVisible ? '' : 'd-none'}`} id="sidebar-wrapper">
                 <div className="sidebar-heading border-bottom bg-light">
-                  <img src={assest.unisel_logo} alt="" height={48} width={48} />
-                  </div>
+                  <img src={assest.unisel_logo} alt="" height={108} width={108} />
+                  </div>  
                 <div className="list-group list-group-flush">
                     <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/add">
                     <i className='bi bi-plus-circle me-2'></i>
